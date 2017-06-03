@@ -1,7 +1,6 @@
 var VideoList = (props) => (
   <div className="video-list media">
-    {props.videos.map((eachVideo) => <VideoListEntry video={eachVideo}/>)}
-
+    {props.videos.map((eachVideo) => <VideoListEntry video={eachVideo} myFunction={props.clickFun}/>)}
   </div>
 );
 
