@@ -10,6 +10,8 @@ var getURLSearchParams = function(url) {
 };
 
 var hasSameShape = function(objectOne, objectTwo) {
+  console.log('they getting this data: ', data);  ///?????
+
   if (Object.keys(objectOne).length !== Object.keys(objectTwo).length) {
     return false;
   }
@@ -59,6 +61,7 @@ describe('searchYouTube', function() {
     searchYouTube({ key: 'API_KEY', query: 'cats', max: 10 }, () => {});
 
     var params = getURLSearchParams(requests[0].url);
+    console.log(' my request[0]:  ', requests[0]);
     expect(params.key).to.equal('API_KEY');
     expect(params.q).to.equal('cats');
     expect(params.maxResults).to.equal('10');
@@ -75,8 +78,10 @@ describe('searchYouTube', function() {
 
     // We want this test to make a real AJAX request
     xhr.restore();
+    console.log('after restore...');
 
     searchYouTube(options, (data) => {
+      console.log('they getting this data: ', data);
       expect(hasSameShape(data, window.exampleVideoData)).to.be.true;
       done();
     });
